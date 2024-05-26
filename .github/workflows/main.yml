@@ -21,4 +21,5 @@ jobs:
 
       - name: Run Script
         run: |
+          pip install python-dotenv
           python main.py

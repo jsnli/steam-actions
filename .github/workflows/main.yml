@@ -22,4 +22,5 @@ jobs:
       - name: Run Script
         run: |
           pip install python-dotenv
+          pip install psycopg
           python main.py

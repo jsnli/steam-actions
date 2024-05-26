@@ -8,4 +8,4 @@ user = os.getenv("POSTGRES_USER")
 if 'POSTGRES_USER' in os.environ:
     print("User found in environ")
     user = os.environ['POSTGRES_USER']
-    print(user)
+    print(f"USER: {user}")

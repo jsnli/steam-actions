@@ -14,6 +14,29 @@ password = os.environ['POSTGRES_PASSWORD']
 name = os.environ['POSTGRES_DATABASE']
 
 
+def get_connection():
+    conn = psycopg.connect(f"host={host} dbname={name} user={user} password={password}")
+    return conn
+
+
+def initiate_db():
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute('DROP TABLE IF EXISTS Games')
+    cur.execute("""
+        CREATE TABLE Games (
+            AppID int,
+            Name varchar(255),
+            LastModified bigint
+        );
+    """)
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
+
 async def get_app_list(last_appid=0):
     app_list = await fetch(last_appid)
     data = []
@@ -28,7 +51,7 @@ async def get_app_list(last_appid=0):
 
 
 def post_app_list(data):
-    conn = psycopg.connect(f"host={host} dbname={name} user={user} password={password}")
+    conn = get_connection()
     cur = conn.cursor()
 
     query = """
@@ -43,6 +66,7 @@ def post_app_list(data):
 
 
 async def main():
+    initiate_db()
     await get_app_list()
 
 asyncio.run(main())

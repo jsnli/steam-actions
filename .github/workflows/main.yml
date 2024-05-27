@@ -9,6 +9,7 @@ env:
   POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
   POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
   POSTGRES_DATABASE: ${{ secrets.POSTGRES_DATABASE }}
+  STEAM_KEY: ${{ secrets.STEAM_KEY }}
 
 jobs:
   build:

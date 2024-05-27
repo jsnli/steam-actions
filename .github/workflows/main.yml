@@ -19,12 +19,13 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v4
-        with: 
-          python-version: '3.12.3'
+        with:
+          python-version: "3.12.3"
 
       - name: Run Script
         run: |
           pip install python-dotenv
           pip install psycopg
           pip install aiohttp
+          pip install requests
           python main.py

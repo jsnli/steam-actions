@@ -26,4 +26,5 @@ jobs:
         run: |
           pip install python-dotenv
           pip install psycopg
+          pip install aiohttp
           python main.py
